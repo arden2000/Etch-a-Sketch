@@ -20,16 +20,22 @@
         </div>
         <div class='options'>
             <div class='grid-size'>
-                <label for="grid-size">Grid Size </label>
+                <div class='grid-text'>
+                    <label for="grid-size">Grid Size:  </label>
+                    <span id='slider-output'></span>
+                </div>
+                
                 <input type="range" id='grid-size-slider'>
-                <span id='slider-output'></span>
+
             </div>
             <div class='color-picker'>
-                <label for="grid-size">Color </label>
-                <input type="color" id="colorpicker" value="#000000">
+                
+                <input type="color" id="colorpicker" value="#abcdef">
             </div>
             <button id='eraser'>Eraser</button>
             <button id='rainbow'>Rainbow</button>
+            <button id='clear'>Clear</button>
+            <button id='show-grid'>Show Grid</button>
         </div>
     </div>
 
