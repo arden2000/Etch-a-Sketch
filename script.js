@@ -1,6 +1,6 @@
 const START_GRID_SIZE = 16;
 
-let mouseDown = false;
+let drawing = false;
 let mode = 'color';
 
 // https://stackoverflow.com/questions/1740700/how-to-get-hex-color-value-rather-than-rgb-value
@@ -20,9 +20,13 @@ colorPicker.addEventListener('change', () => {
 });
 
 const gridContainer = document.querySelector('div.grid-container');
-gridContainer.addEventListener('mouseleave', () => {
-    mouseDown = false;
-}, { capture: false });
+gridContainer.addEventListener('mousedown', (e) => {
+    e.preventDefault();
+    drawing = true;
+});
+
+window.addEventListener('mouseleave', () => {drawing = false});
+window.addEventListener('mouseup', () => {drawing = false;})
 
 const gridSlider = document.querySelector('input#grid-size-slider');
 const gridSizeOutput = document.querySelector('span#slider-output');
@@ -80,17 +84,12 @@ function createGridSquare() {
     grid.classList.add('cell');
 
     grid.addEventListener('mouseover', function (e) {
-        if (mouseDown) {
+        if (drawing) {
             colorCell(this);
         }
     });
     grid.addEventListener('mousedown', function (e) {
-        mouseDown = true;
         colorCell(this);
-    });
-
-    grid.addEventListener('mouseup', function (e) {
-        mouseDown = false;
     });
     return grid;
 }
